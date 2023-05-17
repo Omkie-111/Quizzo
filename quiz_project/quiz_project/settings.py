@@ -42,10 +42,22 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_cron',
+    'django_redis',
 ]
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        },
+    },
+}
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,6 +67,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
+
+CACHE_MIDDLEWARE_SECONDS = 60  # Cache TTL in seconds
+
 REST_FRAMEWORK={
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny']
 }
@@ -92,9 +107,9 @@ DATABASES = {
             'NAME': 'quizzo',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
-                'host': 'mongodb+srv://quizoo:<4CGHbPrNImBh0heX>@cluster0.dtosgcn.mongodb.net/?retryWrites=true&w=majority',
+                'host': 'mongo_db_host_name',
                 'username' : 'quizoo',
-                'password' : '4CGHbPrNImBh0heX'
+                'password' : 'password'
             }  
         }
 }

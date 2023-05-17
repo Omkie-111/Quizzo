@@ -1,4 +1,6 @@
 from rest_framework import generics, status
+from django.views.decorators.cache import cache_page
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Quiz
 from .serializers import QuizSerializer
@@ -66,3 +68,9 @@ class AllQuizzes(generics.ListAPIView):
     """
     queryset = Quiz.objects.all()
     serializer_class = QuizSerializer
+
+class QuizCachedView(APIView):
+    @cache_page(60)  # Cache the response for 60 seconds
+    def get(self, request, *args, **kwargs):
+        # Handle GET request logic here
+        return Response("OK")
