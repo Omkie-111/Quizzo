@@ -12,6 +12,26 @@ The Quiz API includes the following views:
 - `AllQuizzes`: API view to get the list of all quizzes.
 - `QuizCachedView`: API view with caching implemented.
 
+Example request body:
+
+```json
+{
+  "title": "My Quiz",
+  "questions": [
+    {
+      "text": "What is 2 + 2?",
+      "choices": ["3", "4", "5"],
+      "answer": 1
+    },
+    {
+      "text": "Who painted the Mona Lisa?",
+      "choices": ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso"],
+      "answer": 0
+    }
+  ]
+}
+'''
+
 ### `QuizList`
 
 This view allows creating quizzes.
