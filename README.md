@@ -28,26 +28,6 @@ The request should include the following parameters:
   - `choices` (list): A list of choices for the question.
   - `answer` (integer): The index of the correct answer.
  
-  
-Example request body:
-
-```json
-{
-  "title": "My Quiz",
-  "questions": [
-    {
-      "text": "What is 2 + 2?",
-      "choices": ["3", "4", "5"],
-      "answer": 1
-    },
-    {
-      "text": "Who painted the Mona Lisa?",
-      "choices": ["Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso"],
-      "answer": 0
-    }
-  ]
-}
-
 #### Response
 
 If the quiz is successfully created, the response will include the created quiz object with a status code of 201 (Created).
